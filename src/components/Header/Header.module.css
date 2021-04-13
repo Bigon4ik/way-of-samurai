@@ -1,0 +1,9 @@
+.header img{
+    width: 40px;
+
+}
+
+.header{
+    background-color: yellowgreen;
+    grid-area: h;
+}
