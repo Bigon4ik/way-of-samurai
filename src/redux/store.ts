@@ -26,7 +26,6 @@ export type DiologPageType = {
     dialogs: Array<DiologType>
     message: Array<MessageType>
     messageForNewMessage: string
-    dispatch: (action: ActionsType) => void
 
 }
 export type SidebarType = {}

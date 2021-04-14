@@ -8,17 +8,18 @@ import {Route} from 'react-router-dom';
 import {StoreType} from './redux/store'
 import store, {ReduxStateType, ReduxStoreType} from './redux/redux-store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import MyPostsContainer from './components/Profile/MyPosts/MyPostsContainer';
 
 // type AppPropsType = {
 //     state: RootStateType
 //     addPost:(postText:string)=>void
 // }
-type PropsType = {
-    store?: ReduxStoreType
-}
+// type PropsType = {
+//     store?: ReduxStoreType
+// }
 
-const App: React.FC<PropsType> = (props) => {
-    const state: ReduxStateType = props.store.getState()
+const App: React.FC = (props) => {
+    // const state: ReduxStateType = props.store.getState()
     return (
 
         <div className="app-wrapper">
@@ -27,7 +28,6 @@ const App: React.FC<PropsType> = (props) => {
             <div className="app-wrapper-content">
                 <Route path='/profile'
                        render={() => <Profile
-                           store={props.store}
                            // dataProfile={state.profilePage.posts}
                            // message={state.profilePage.messageForNewPost}
                            // dispatch={props.store.dispatch.bind(props.store)}
@@ -35,9 +35,10 @@ const App: React.FC<PropsType> = (props) => {
                            //changeNewTextCallback={props.store.changeNewText.bind(props.store)}
                        />}/>
                 <Route path='/dialogs'
-                       render={() => <DialogsContainer
-                           store={props.store}
-                       />}
+                       render={() => <DialogsContainer/>}
+                />
+                <Route path='/users'
+                       render={() => <div>users</div>}
                 />
             </div>
         </div>

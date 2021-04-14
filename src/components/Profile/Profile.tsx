@@ -6,7 +6,7 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 import {ReduxStateType, ReduxStoreType} from '../../redux/redux-store';
 
 export type ProfilePropsType = {
-    store:ReduxStoreType
+    store?:ReduxStoreType
    //  dataProfile: Array<PostType>
    //  //addPostCallback: (postText: string) => void
    // // changeNewTextCallback:any
@@ -19,7 +19,6 @@ const Profile = (props: ProfilePropsType) => {
         <div>
             <ProfileInfo/>
             <MyPostsContainer
-                store={props.store}
                 // posts={props.dataProfile}
                 // messageForNewPost={props.message}
                 // dispatch={props.dispatch.bind(props.dispatch)}

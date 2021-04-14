@@ -1,12 +1,11 @@
 import {ActionsType, DiologPageType, MessageType, PostType, ProfilePageType} from './store';
 
-const ADD_MESSAGE='ADD-MESSAGE'
-const CHANGE_NEW_TEXT_MESSAGE='CHANGE-NEW-TEXT-MESSAGE'
+const ADD_MESSAGE = 'ADD-MESSAGE'
+const CHANGE_NEW_TEXT_MESSAGE = 'CHANGE-NEW-TEXT-MESSAGE'
 
-export const AddMessageAC = (messageText: string) => {
+export const AddMessageAC = () => {
     return {
-        type: 'ADD-MESSAGE',
-        messageText: messageText,
+        type: 'ADD-MESSAGE'
     } as const
 }
 export const ChangeNewTextDialogsAC = (newTextMessage: string) => {
@@ -16,9 +15,7 @@ export const ChangeNewTextDialogsAC = (newTextMessage: string) => {
     } as const
 }
 
-const initialState: DiologPageType ={
-    dispatch: () => {
-    },
+const initialState: DiologPageType = {
     messageForNewMessage: '',
     dialogs: [
         {id: 1, name: 'Pavel'},
@@ -34,23 +31,25 @@ const initialState: DiologPageType ={
     ]
 }
 
- const dialogsReducer = (state=initialState, action:ActionsType) => {
-     switch (action.type){
-         case ADD_MESSAGE:
-             const newMessage: MessageType = {
-                 message: action.messageText,
-             }
-             state.message.push(newMessage)
+const dialogsReducer = (state = initialState, action: ActionsType) => {
+    switch (action.type) {
+        case ADD_MESSAGE: {
+            return {
+                ...state,
+                messageForNewMessage: '',
+                message: [...state.message, {message: state.messageForNewMessage}],
+            }
+        }
+        case CHANGE_NEW_TEXT_MESSAGE: {
+            return {
+                ...state,
+                messageForNewMessage: action.newTextMessage}
 
-             state.messageForNewMessage = ''
-             return state
-         case CHANGE_NEW_TEXT_MESSAGE:
-             state.messageForNewMessage = action.newTextMessage
-             return state
-         default:
-             return state
-     }
-  }
+        }
+        default:
+            return state
+    }
+}
 
 export default dialogsReducer;
 
