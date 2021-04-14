@@ -15,13 +15,11 @@ export const ChangeNewTextAC = (newText: string) => {
     } as const
 }
 const initialState: ProfilePageType = {
-    dispatch: () => {
-    },
     messageForNewPost: 'iiiiiit',
     posts: [
         {id: 1, message: 'Hi,hom are you', likesCount: 12},
         {id: 2, message: 'Hello my freends', likesCount: 42},
-        {id: 3, message: 'Hello my', likesCount: 2},
+        {id: 3, message: 'Hello my', likesCount: 2}
     ],
 
 }

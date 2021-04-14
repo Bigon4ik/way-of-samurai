@@ -9,6 +9,8 @@ import {StoreType} from './redux/store'
 import store, {ReduxStateType, ReduxStoreType} from './redux/redux-store';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import MyPostsContainer from './components/Profile/MyPosts/MyPostsContainer';
+import Users from './components/Users/Users';
+import UsersContainer from './components/Users/UsersContainer';
 
 // type AppPropsType = {
 //     state: RootStateType
@@ -38,7 +40,7 @@ const App: React.FC = (props) => {
                        render={() => <DialogsContainer/>}
                 />
                 <Route path='/users'
-                       render={() => <div>users</div>}
+                       render={() => <UsersContainer/>}
                 />
             </div>
         </div>

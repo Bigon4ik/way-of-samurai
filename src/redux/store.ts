@@ -1,6 +1,7 @@
 import profileReducer, {AddPostAC, ChangeNewTextAC} from './Profile-Reducer';
 import dialogsReducer, {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Reducer';
 import sidebarReducer from './sidbar-Reducer';
+import {followAC, setUsersAC, unfollowAC} from './Users-Reducer';
 
 export type MessageType = {
     message: string
@@ -20,7 +21,6 @@ export type ProfilePageType = {
     //addPost?: any
     //changeNewTextCallback?: any
     messageForNewPost: string
-    dispatch: (action: ActionsType) => void
 }
 export type DiologPageType = {
     dialogs: Array<DiologType>
@@ -49,6 +49,9 @@ export type ActionsType =
     | ReturnType<typeof ChangeNewTextAC>
     | ReturnType<typeof AddMessageAC>
     | ReturnType<typeof ChangeNewTextDialogsAC>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
 
 // const store: StoreType = {
 //     _state: {
