@@ -1,8 +1,15 @@
-import {ActionsType, DiologPageType, MessageType, PostType, ProfilePageType} from './store';
+import {ActionsType, DiologPageType, PostType, ProfilePageType} from './store';
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const CHANGE_NEW_TEXT_MESSAGE = 'CHANGE-NEW-TEXT-MESSAGE'
 
+export type MessageType = {
+    message: string
+}
+export type DiologType = {
+    id: number
+    name: string
+}
 export const AddMessageAC = () => {
     return {
         type: 'ADD-MESSAGE'
@@ -23,15 +30,16 @@ const initialState: DiologPageType = {
         {id: 3, name: 'Sergei'},
         {id: 4, name: 'Maks'},
         {id: 5, name: 'Artem'},
-        {id: 6, name: 'Oleg'}],
+        {id: 6, name: 'Oleg'}]as Array<DiologType>,
     message: [
         {message: 'axaxax'},
         {message: 'you'},
         {message: 'hello'},
-    ]
+    ]as Array<MessageType>
 }
+export type InitialStateType= typeof initialState
 
-const dialogsReducer = (state = initialState, action: ActionsType) => {
+const dialogsReducer = (state:InitialStateType = initialState, action: ActionsType):InitialStateType => {
     switch (action.type) {
         case ADD_MESSAGE: {
             return {

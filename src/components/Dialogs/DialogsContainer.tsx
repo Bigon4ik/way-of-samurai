@@ -1,9 +1,8 @@
 import React from 'react';
-import {AddMessageAC, ChangeNewTextDialogsAC} from '../../redux/Dialogs-Reducer';
+import {AddMessageAC, ChangeNewTextDialogsAC, DiologType, MessageType} from '../../redux/Dialogs-Reducer';
 import Dialogs from './Dialogs';
 import {ReduxStateType, ReduxStoreType} from '../../redux/redux-store';
 import {connect} from 'react-redux';
-import {DiologType, MessageType} from '../../redux/store';
 
 type DialogsContainerType = {
     // store: ReduxStoreType

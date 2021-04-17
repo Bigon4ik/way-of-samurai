@@ -3,10 +3,10 @@ import dialogsReducer, {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Re
 import sidebarReducer from './sidbar-Reducer';
 import {followAC, setUsersAC, unfollowAC} from './Users-Reducer';
 
-export type MessageType = {
+ type MessageType = {
     message: string
 }
-export type DiologType = {
+ type DiologType = {
     id: number
     name: string
 }
