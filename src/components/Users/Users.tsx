@@ -1,30 +1,32 @@
 import React from 'react';
 import s from './User.module.css'
-import {UsersPropsType} from './UsersContainer';
-import axios from 'axios';
-import UserPhoto from "../../assets/img/user.png"
+import UserPhoto from '../../assets/img/user.png'
 
+let Users = (props:any) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
-export function Users(props: UsersPropsType) {
-    function getUsers(){
-        if (props.usersPage.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response=>{
-                props.setUsers(response.data.items)
-
-            })
-
-        }
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i)
     }
-
     return (
         <>
-        <button onClick={getUsers}>Get Users</button>
-        <div className={s.users}>
-            {
-                props.usersPage.users.map(u => <div key={u.id}>
+            <div>
+                {pages.map(p => {
+                    // @ts-ignore
+                    return <span className={props.currentPage === p && s.selectedPage}
+                                 onClick={() => {
+                                     props.onPageChanged(p)
+                                 }}>{p}</span>
+                })}
+
+            </div>
+            <div className={s.users}>
+                {
+                    props.users.map((u:any) => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photos.small != null ? u.photos.small :UserPhoto}/>
+                            <img src={u.photos.small != null ? u.photos.small : UserPhoto}/>
                         </div>
                         <div>
                             {u.followed
@@ -36,21 +38,22 @@ export function Users(props: UsersPropsType) {
                                 }}>Follow</button>}
                         </div>
                     </span>
-                    <span>
+                        <span>
                         <span>
                             <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
                         <span>
-                            <div>{"u.location.country"}</div>
-                            <div>{"u.location.city"}</div>
+                            <div>{'u.location.country'}</div>
+                            <div>{'u.location.city'}</div>
                         </span>
                     </span>
-                </div>)
-            }
-        </div>
+                    </div>)
+                }
+            </div>
         </>
     )
 }
+
 
 export default Users;

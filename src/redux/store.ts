@@ -1,7 +1,7 @@
 import profileReducer, {AddPostAC, ChangeNewTextAC} from './Profile-Reducer';
 import dialogsReducer, {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Reducer';
 import sidebarReducer from './sidbar-Reducer';
-import {followAC, setUsersAC, unfollowAC} from './Users-Reducer';
+import {followAC, setCountPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from './Users-Reducer';
 
  type MessageType = {
     message: string
@@ -52,6 +52,8 @@ export type ActionsType =
     | ReturnType<typeof followAC>
     | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC>
+    | ReturnType<typeof setCountPageAC>
+    | ReturnType<typeof setTotalUsersCountAC>
 
 // const store: StoreType = {
 //     _state: {

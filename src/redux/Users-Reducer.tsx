@@ -3,10 +3,12 @@ import {ActionsType, PostType, ProfilePageType} from './store';
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURENT_PAGE = 'SET_CURENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 
-type UserLocationType={
-    city:string
-    country:string
+type UserLocationType = {
+    city: string
+    country: string
 }
 export type UserType = {
     id: number
@@ -22,6 +24,18 @@ export const setUsersAC = (users: Array<UserType>) => {
         users
     } as const
 }
+export const setCountPageAC = (currentPage: number) => {
+    return {
+        type: 'SET_CURENT_PAGE',
+        currentPage
+    } as const
+}
+export const setTotalUsersCountAC = (totalCount: number) => {
+    return {
+        type: 'SET_TOTAL_USERS_COUNT',
+        totalCount
+    } as const
+}
 export const followAC = (userID: number) => {
     return {
         type: 'FOLLOW',
@@ -34,12 +48,20 @@ export const unfollowAC = (userID: number) => {
         userID
     } as const
 }
+
 export type InitialStateType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+
 
 }
 const initialState: InitialStateType = {
-    users: []
+    users: [],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
     // users: [
     //     {
     //         id: 1,
@@ -67,7 +89,7 @@ const initialState: InitialStateType = {
 
 };
 
-const usersReducer = (state: InitialStateType = initialState, action: ActionsType):InitialStateType => {
+const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -94,7 +116,18 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: action.users
+            }
+
+        case SET_CURENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.currentPage
+            }
+        case SET_TOTAL_USERS_COUNT:
+            return {
+                ...state,
+                totalUsersCount: action.totalCount
             }
         default:
             return state;
