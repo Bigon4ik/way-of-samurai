@@ -11,6 +11,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import MyPostsContainer from './components/Profile/MyPosts/MyPostsContainer';
 import UsersOld from './components/Users/UsersOld';
 import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
 // type AppPropsType = {
 //     state: RootStateType
@@ -29,7 +30,7 @@ const App: React.FC = (props) => {
             <NavBar/>
             <div className="app-wrapper-content">
                 <Route path='/profile'
-                       render={() => <Profile
+                       render={() => <ProfileContainer
                            // dataProfile={state.profilePage.posts}
                            // message={state.profilePage.messageForNewPost}
                            // dispatch={props.store.dispatch.bind(props.store)}
