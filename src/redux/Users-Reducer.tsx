@@ -5,6 +5,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURENT_PAGE = 'SET_CURENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 type UserLocationType = {
     city: string
@@ -18,34 +19,41 @@ export type UserType = {
     status: string
     location: UserLocationType
 }
-export const setUsersAC = (users: Array<UserType>) => {
+
+export const setUsers = (users: Array<UserType>) => {
     return {
         type: 'SET_USERS',
         users
     } as const
 }
-export const setCountPageAC = (currentPage: number) => {
+export const setCountPage = (currentPage: number) => {
     return {
         type: 'SET_CURENT_PAGE',
         currentPage
     } as const
 }
-export const setTotalUsersCountAC = (totalCount: number) => {
+export const setTotalUsersCount = (totalCount: number) => {
     return {
         type: 'SET_TOTAL_USERS_COUNT',
         totalCount
     } as const
 }
-export const followAC = (userID: number) => {
+export const follow = (userID: number) => {
     return {
         type: 'FOLLOW',
         userID
     } as const
 }
-export const unfollowAC = (userID: number) => {
+export const unfollow = (userID: number) => {
     return {
         type: 'UNFOLLOW',
         userID
+    } as const
+}
+export const toggleIsFetching= (isFetching: boolean) => {
+    return {
+        type: 'TOGGLE_IS_FETCHING',
+        isFetching
     } as const
 }
 
@@ -54,6 +62,7 @@ export type InitialStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching:boolean
 
 
 }
@@ -61,31 +70,8 @@ const initialState: InitialStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
-    // users: [
-    //     {
-    //         id: 1,
-    //         photoUrl:'https://c0.klipartz.com/pngpicture/744/721/sticker-png-male-avatar-avatar-man-television-cartoon-user-svg-person.png',
-    //         followed: true,
-    //         fullName: 'Anton',
-    //         status: 'I am a boss',
-    //         location: {country: 'Belarus', city: 'Minsk'}
-    //     },
-    //     {
-    //         id: 2,
-    //         photoUrl:'https://c0.klipartz.com/pngpicture/744/721/sticker-png-male-avatar-avatar-man-television-cartoon-user-svg-person.png',
-    //         followed: true,
-    //         fullName: 'Dima',
-    //         status: 'I am a proger',
-    //         location: {country: 'Belarus', city: 'Grodno'}
-    //     },
-    //     {id: 3,
-    //         photoUrl:'https://c0.klipartz.com/pngpicture/744/721/sticker-png-male-avatar-avatar-man-television-cartoon-user-svg-person.png',
-    //         followed: false,
-    //         fullName: 'Victor',
-    //         status: 'Good man',
-    //         location: {country: 'USA', city: 'Boston'}},
-    // ],
+    currentPage: 1,
+    isFetching:true,
 
 };
 
@@ -118,7 +104,6 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
                 ...state,
                 users: action.users
             }
-
         case SET_CURENT_PAGE:
             return {
                 ...state,
@@ -128,6 +113,11 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
             return {
                 ...state,
                 totalUsersCount: action.totalCount
+            }
+            case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
             }
         default:
             return state;
