@@ -29,7 +29,7 @@ const App: React.FC = (props) => {
             <Header/>
             <NavBar/>
             <div className="app-wrapper-content">
-                <Route path='/profile'
+                <Route path='/profile/:userId?'
                        render={() => <ProfileContainer
                            // dataProfile={state.profilePage.posts}
                            // message={state.profilePage.messageForNewPost}

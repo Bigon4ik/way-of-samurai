@@ -1,7 +1,8 @@
-import {ActionsType, PostType, ProfilePageType} from './store';
+import {ActionsType, PostType} from './store';
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 export const AddPostAC = () => {
     return {
@@ -14,6 +15,17 @@ export const ChangeNewTextAC = (newText: string) => {
         newText: newText,
     } as const
 }
+export const SetUserProfile = (profile:any) => {
+    return {
+        type: 'SET_USER_PROFILE',
+        profile
+    } as const
+}
+type ProfilePageType = {
+    posts: Array<PostType>
+    messageForNewPost: string
+    profile:null
+}
 const initialState: ProfilePageType = {
     messageForNewPost: 'iiiiiit',
     posts: [
@@ -21,6 +33,7 @@ const initialState: ProfilePageType = {
         {id: 2, message: 'Hello my freends', likesCount: 42},
         {id: 3, message: 'Hello my', likesCount: 2}
     ],
+    profile:null
 
 }
 
@@ -42,6 +55,12 @@ const profileReducer = (state = initialState, action: ActionsType) => {
             return {
                 ...state,
                 messageForNewPost: action.newText
+            }
+        }
+        case SET_USER_PROFILE: {
+            return {
+                ...state,
+                profile: action.profile
             }
         }
         default:

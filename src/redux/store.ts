@@ -1,4 +1,4 @@
-import profileReducer, {AddPostAC, ChangeNewTextAC} from './Profile-Reducer';
+import profileReducer, {AddPostAC, ChangeNewTextAC, SetUserProfile} from './Profile-Reducer';
 import dialogsReducer, {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Reducer';
 import sidebarReducer from './sidbar-Reducer';
 import {
@@ -62,6 +62,7 @@ export type ActionsType =
     | ReturnType<typeof setCountPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof SetUserProfile>
 
 // const store: StoreType = {
 //     _state: {
