@@ -6,9 +6,10 @@ import {
     setCountPage,
     setTotalUsersCount,
     setUsers,
-    toggleIsFetching,
+    toggleIsFetching, toggleIsFollowingProgress,
     unfollow
 } from './Users-Reducer';
+import {setAuthUsersData} from './auth-Reducer';
 
  type MessageType = {
     message: string
@@ -63,6 +64,11 @@ export type ActionsType =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof SetUserProfile>
+    | ReturnType<typeof setAuthUsersData>
+    | ReturnType<typeof toggleIsFollowingProgress>
+
+
+
 
 // const store: StoreType = {
 //     _state: {

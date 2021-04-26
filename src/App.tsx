@@ -12,6 +12,7 @@ import MyPostsContainer from './components/Profile/MyPosts/MyPostsContainer';
 import UsersOld from './components/Users/UsersOld';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 // type AppPropsType = {
 //     state: RootStateType
@@ -26,7 +27,7 @@ const App: React.FC = (props) => {
     return (
 
         <div className="app-wrapper">
-            <Header/>
+            <HeaderContainer/>
             <NavBar/>
             <div className="app-wrapper-content">
                 <Route path='/profile/:userId?'
