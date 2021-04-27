@@ -12,34 +12,13 @@ type DialogsContainerType = {
     addMessage: () => void
     newTextChangeHandler: (text: string) => void
 }
-//
-// const DialogsContainer = (props: DialogsContainerType) => {
-//
-//     // let state = store.getState().dialogsPage;
-//
-//     // const postsElement = props.posts
-//     //     .map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
-//
-//     const addMessage = () => {
-//         //props.addPost(props.messageForNewPost)
-//
-//         store.dispatch(AddMessageAC(state.messageForNewMessage))
-//     }
-//     const newTextChangeHandler = (text: string) => {
-//         //props.changeNewTextCallback(e.currentTarget.value)
-//         store.dispatch(ChangeNewTextDialogsAC(text))
-//     }
-//     return <Dialogs addMessage={addMessage}
-//                     newTextChangeHandler={newTextChangeHandler}
-//                     dataDialogs={state}
-//                     message={state.messageForNewMessage}/>
-// }
 
 let mapStateToProps = (state: ReduxStateType) => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messageForNewMessage: state.dialogsPage.messageForNewMessage,
-        messages: state.dialogsPage.message
+        messages: state.dialogsPage.message,
+        isAuth: state.auth.isAuth
 
     }
 

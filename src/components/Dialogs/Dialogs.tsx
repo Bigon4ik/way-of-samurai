@@ -4,6 +4,7 @@ import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
 import {ActionsType, DiologPageType} from '../../redux/store';
 import {AddMessageAC, ChangeNewTextDialogsAC, DiologType, MessageType} from '../../redux/Dialogs-Reducer';
+import { Redirect } from 'react-router-dom';
 
 type DiologPropsType={
     dialogs: Array<DiologType>
@@ -11,6 +12,7 @@ type DiologPropsType={
     messageForNewMessage: string
     addMessage:()=> void
     newTextChangeHandler:(text:string)=> void
+    isAuth:boolean
 }
 
 const Dialogs = (props:DiologPropsType) => {
@@ -31,6 +33,9 @@ const Dialogs = (props:DiologPropsType) => {
 
     let messageElements = props.messages
         .map(m => <Message message={m.message} key={m.message}/>)
+
+    if(!props.isAuth) return <Redirect to={"/login"}/>
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
