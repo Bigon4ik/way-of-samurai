@@ -2,12 +2,12 @@ import profileReducer, {AddPostAC, ChangeNewTextAC, SetUserProfile} from './Prof
 import dialogsReducer, {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Reducer';
 import sidebarReducer from './sidbar-Reducer';
 import {
-    follow,
+    follow, followSoc,
     setCountPage,
     setTotalUsersCount,
     setUsers,
     toggleIsFetching, toggleIsFollowingProgress,
-    unfollow
+    unfollow, unfollowSoc
 } from './Users-Reducer';
 import {setAuthUsersData} from './auth-Reducer';
 
@@ -57,8 +57,8 @@ export type ActionsType =
     | ReturnType<typeof ChangeNewTextAC>
     | ReturnType<typeof AddMessageAC>
     | ReturnType<typeof ChangeNewTextDialogsAC>
-    | ReturnType<typeof follow>
-    | ReturnType<typeof unfollow>
+    | ReturnType<typeof followSoc>
+    | ReturnType<typeof unfollowSoc>
     | ReturnType<typeof setUsers>
     | ReturnType<typeof setCountPage>
     | ReturnType<typeof setTotalUsersCount>
