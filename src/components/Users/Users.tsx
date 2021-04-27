@@ -36,7 +36,7 @@ let Users = (props: any) => {
                         <div>
                             {u.followed
                                 ? <button disabled={props.followingInProgress.some((id:any)=>id===u.id)} onClick={() => {
-                                    props.unFollow(u.id)}}>
+                                    props.unfollow(u.id)}}>
                                     Unfollow</button>
                                 : <button disabled={props.followingInProgress.some((id:any)=>id===u.id)} onClick={() => {
                                     props.follow(u.id)}}>

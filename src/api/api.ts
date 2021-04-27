@@ -8,14 +8,22 @@ const instace = axios.create({
 })
 
 export const usersAPI = {
-    getUsers(currentPage: any, pageSize: any) {
+    getUsers(currentPage:any, pageSize: any) {
         return instace.get(`users?page=${currentPage}&count=${pageSize}`, {})
             .then(response => response.data)
     },
-    follow(userId:any){
+    follow(userId:number){
         return instace.post(`follow/${userId}`,)
     },
-    unFollow(userId:any){
+    unFollow(userId:number){
         return instace.delete(`follow/${userId}`,)
+    },
+    getProfile(userId:number){
+        return instace.get(`profile/` + userId)
+    }
+}
+export const authAPI = {
+    me(){
+        return instace.get(`auth/me`)
     }
 }

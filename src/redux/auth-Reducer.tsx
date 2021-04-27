@@ -1,4 +1,5 @@
 import {ActionsType, PostType, ProfilePageType} from './store';
+import {authAPI} from '../api/api';
 
 
 const SET_USERS_DATA = 'SET_USERS_DATA'
@@ -17,11 +18,21 @@ export type UserType = {
     location: UserLocationType
 }
 
-export const setAuthUsersData = ( id: number | null, email: string |null, login: string | null) => {
+const setAuthUsersData = ( id: number | null, email: string |null, login: string | null) => {
     return {
         type: 'SET_USERS_DATA',
         data:{id,email,login}
     } as const
+}
+export const getAuthUsersData = () =>
+    (dispatch:any)=>{
+        authAPI.me().then(response => {
+            if (response.data.resultCode === 0) {
+                let {id, email, login} = response.data.data
+                dispatch(setAuthUsersData(id,email,login))
+            }
+
+        })
 }
 
 

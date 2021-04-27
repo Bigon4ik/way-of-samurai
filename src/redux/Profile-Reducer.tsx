@@ -1,4 +1,5 @@
 import {ActionsType, PostType} from './store';
+import {usersAPI} from '../api/api';
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
@@ -15,12 +16,19 @@ export const ChangeNewTextAC = (newText: string) => {
         newText: newText,
     } as const
 }
-export const SetUserProfile = (profile:any) => {
+const SetUserProfile = (profile:any) => {
     return {
         type: 'SET_USER_PROFILE',
         profile
     } as const
 }
+export const getUserProfile = (userId:number) => (dispatch:any)=> {
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(SetUserProfile(response.data))
+    })
+    }
+
+
 type ProfilePageType = {
     posts: Array<PostType>
     messageForNewPost: string
