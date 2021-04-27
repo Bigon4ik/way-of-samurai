@@ -23,7 +23,7 @@ type MapStateToPropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    //followingInProgress:any
+    followingInProgress:any
 
 }
 type MapDispatchToPropsType = {
@@ -74,7 +74,7 @@ class UsersContainer extends React.Component<UsersPropsType, UserType> {
                    follow={this.props.follow}
                    unfollow={this.props.unfollow}
                    //toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
-                   //followingInProgress={this.props.followingInProgress}
+                   followingInProgress={this.props.followingInProgress}
             />
         </>
 
@@ -88,7 +88,7 @@ const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        //followingInProgress:state.usersPage.followingInProgress
+        followingInProgress:state.usersPage.followingInProgress
 
     }
 }

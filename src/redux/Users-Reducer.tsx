@@ -1,8 +1,8 @@
 import {ActionsType, PostType, ProfilePageType} from './store';
 import {usersAPI} from '../api/api';
 
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
+const FOLLOW_SOC = 'FOLLOW_SOC'
+const UNFOLLOW_SOC = 'UNFOLLOW_SOC'
 const SET_USERS = 'SET_USERS'
 const SET_CURENT_PAGE = 'SET_CURENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
@@ -42,13 +42,13 @@ export const setTotalUsersCount = (totalCount: number) => {
 }
 export const followSoc = (userID: number) => {
     return {
-        type: 'FOLLOW',
+        type: 'FOLLOW_SOC',
         userID
     } as const
 }
 export const unfollowSoc = (userID: number) => {
     return {
-        type: 'UNFOLLOW',
+        type: 'UNFOLLOW_SOC',
         userID
     } as const
 }
@@ -90,7 +90,7 @@ const initialState: InitialStateType = {
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
     switch (action.type) {
-        case FOLLOW:
+        case FOLLOW_SOC:
             return {
                 ...state,
                 //users:[...state.users],
@@ -101,7 +101,7 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionsTyp
                     return u
                 })
             }
-        case UNFOLLOW:
+        case UNFOLLOW_SOC:
             return {
                 ...state,
                 //users:[...state.users],
@@ -161,7 +161,7 @@ export const follow = (userId:number) => {
         dispatch(toggleIsFollowingProgress(true, userId))
         usersAPI.follow(userId).then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(follow(userId))
+                dispatch(followSoc(userId))
             }
             dispatch(toggleIsFollowingProgress(false, userId))
         })
@@ -172,7 +172,7 @@ export const unfollow = (userId:number) => {
         dispatch(toggleIsFollowingProgress(true,userId))
         usersAPI.unFollow(userId).then(response => {
                 if (response.data.resultCode === 0) {
-                    dispatch(unfollow(userId))
+                    dispatch(unfollowSoc(userId))
                 }
                 dispatch(toggleIsFollowingProgress(false,userId))
             })
