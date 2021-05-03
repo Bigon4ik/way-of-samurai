@@ -1,9 +1,12 @@
 import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post from './Post/Post'
-import {PostType, ProfilePageType} from '../../../redux/store';
-import {AddPostAC, ChangeNewTextAC} from '../../../redux/Profile-Reducer';
 
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
 type MyPostsType = {
     posts: Array<PostType>
     addPost: () => void

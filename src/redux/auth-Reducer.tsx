@@ -1,5 +1,5 @@
-import {ActionsType, PostType, ProfilePageType} from './store';
 import {authAPI} from '../api/api';
+import {ActionsType} from './redux-store';
 
 
 const SET_USERS_DATA = 'SET_USERS_DATA'
@@ -18,7 +18,7 @@ export type UserType = {
     location: UserLocationType
 }
 
-const setAuthUsersData = ( id: number | null, email: string |null, login: string | null) => {
+export const setAuthUsersData = ( id: number | null, email: string |null, login: string | null) => {
     return {
         type: 'SET_USERS_DATA',
         data:{id,email,login}

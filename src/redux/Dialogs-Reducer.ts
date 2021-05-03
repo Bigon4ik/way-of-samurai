@@ -1,8 +1,13 @@
-import {ActionsType, DiologPageType, PostType, ProfilePageType} from './store';
+import {ActionsType} from './redux-store';
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const CHANGE_NEW_TEXT_MESSAGE = 'CHANGE-NEW-TEXT-MESSAGE'
+type DiologPageType = {
+    dialogs: Array<DiologType>
+    message: Array<MessageType>
+    messageForNewMessage: string
 
+}
 export type MessageType = {
     message: string
 }

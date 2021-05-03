@@ -1,22 +1,44 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import profileReducer from './Profile-Reducer';
-import dialogsReducer from './Dialogs-Reducer';
+import profileReducer, {AddPostAC, ChangeNewTextAC, SetUserProfile} from './Profile-Reducer';
+import dialogsReducer, {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Reducer';
 import sidebarReducer from './sidbar-Reducer';
-import usersReducer from './Users-Reducer';
-import authReducer from './auth-Reducer';
+import usersReducer, {
+    followSoc,
+    setCountPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching, toggleIsFollowingProgress,
+    unfollowSoc
+} from './Users-Reducer';
+import authReducer, {setAuthUsersData} from './auth-Reducer';
 import thunkMiddleware from 'redux-thunk';
 
-const rootReducers = combineReducers({
+export type ActionsType =
+    ReturnType<typeof AddPostAC>
+    | ReturnType<typeof ChangeNewTextAC>
+    | ReturnType<typeof AddMessageAC>
+    | ReturnType<typeof ChangeNewTextDialogsAC>
+    | ReturnType<typeof followSoc>
+    | ReturnType<typeof unfollowSoc>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCountPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
+    | ReturnType<typeof SetUserProfile>
+    | ReturnType<typeof setAuthUsersData>
+    | ReturnType<typeof toggleIsFollowingProgress>
+
+const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
-    auth:authReducer
+    auth: authReducer
 })
 
-export type ReduxStateType = ReturnType<typeof rootReducers>
+export type ReduxStateType = ReturnType<typeof rootReducer>
 
-const store = createStore(rootReducers,applyMiddleware(thunkMiddleware));
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 export type ReduxStoreType = typeof store
 

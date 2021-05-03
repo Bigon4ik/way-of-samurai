@@ -1,5 +1,5 @@
-import {ActionsType, PostType, ProfilePageType} from './store';
 import {usersAPI} from '../api/api';
+import {ActionsType} from './redux-store';
 
 const FOLLOW_SOC = 'FOLLOW_SOC'
 const UNFOLLOW_SOC = 'UNFOLLOW_SOC'

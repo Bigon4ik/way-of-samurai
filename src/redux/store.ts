@@ -1,71 +1,61 @@
-import profileReducer, {AddPostAC, ChangeNewTextAC, SetUserProfile} from './Profile-Reducer';
-import dialogsReducer, {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Reducer';
-import sidebarReducer from './sidbar-Reducer';
+import {AddPostAC, ChangeNewTextAC, SetUserProfile} from './Profile-Reducer';
+import {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Reducer';
 import {
-    follow, followSoc,
+    followSoc,
     setCountPage,
     setTotalUsersCount,
     setUsers,
-    toggleIsFetching, toggleIsFollowingProgress,
-    unfollow, unfollowSoc
+    toggleIsFetching,
+    toggleIsFollowingProgress,
+    unfollowSoc
 } from './Users-Reducer';
 import {setAuthUsersData} from './auth-Reducer';
 
- type MessageType = {
-    message: string
-}
- type DiologType = {
-    id: number
-    name: string
-}
-export type PostType = {
-    id: number
-    message: string
-    likesCount: number
+// type MessageType = {
+//     message: string
+// }
+//  type DiologType = {
+//     id: number
+//     name: string
+// }
 
-}
-export type ProfilePageType = {
-    posts: Array<PostType>
-    //addPost?: any
-    //changeNewTextCallback?: any
-    messageForNewPost: string
-}
-export type DiologPageType = {
-    dialogs: Array<DiologType>
-    message: Array<MessageType>
-    messageForNewMessage: string
+// export type ProfilePageType = {
+//     posts: Array<PostType>
+//     //addPost?: any
+//     //changeNewTextCallback?: any
+//     messageForNewPost: string
+// }
 
-}
-export type SidebarType = {}
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DiologPageType
-    sidebar: SidebarType
-}
-export type StoreType = {
-    _state: RootStateType,
-    // changeNewText: (newText: string) => void
-    // addPost: (postText: string) => void
-    _onChange: () => void
-    subscribe: (collback: () => void) => void
-    getState: () => RootStateType
-    dispatch: (action: ActionsType) => void
-}
+// export type SidebarType = {}
+// export type RootStateType = {
+//     profilePage: ProfilePageType
+//     dialogsPage: DiologPageType
+//     sidebar: SidebarType
+// }
+// export type StoreType = {
+//     _state: RootStateType,
+//     // changeNewText: (newText: string) => void
+//     // addPost: (postText: string) => void
+//     _onChange: () => void
+//     subscribe: (collback: () => void) => void
+//     getState: () => RootStateType
+//     dispatch: (action: ActionsType) => void
+// }
 
-export type ActionsType =
-    ReturnType<typeof AddPostAC>
-    | ReturnType<typeof ChangeNewTextAC>
-    | ReturnType<typeof AddMessageAC>
-    | ReturnType<typeof ChangeNewTextDialogsAC>
-    | ReturnType<typeof followSoc>
-    | ReturnType<typeof unfollowSoc>
-    | ReturnType<typeof setUsers>
-    | ReturnType<typeof setCountPage>
-    | ReturnType<typeof setTotalUsersCount>
-    | ReturnType<typeof toggleIsFetching>
-    | ReturnType<typeof SetUserProfile>
-    | ReturnType<typeof setAuthUsersData>
-    | ReturnType<typeof toggleIsFollowingProgress>
+// export type ActionsType =
+//     ReturnType<typeof AddPostAC>
+//     | ReturnType<typeof ChangeNewTextAC>
+//     | ReturnType<typeof AddMessageAC>
+//     | ReturnType<typeof ChangeNewTextDialogsAC>
+//     | ReturnType<typeof followSoc>
+//     | ReturnType<typeof unfollowSoc>
+//     | ReturnType<typeof setUsers>
+//     | ReturnType<typeof setCountPage>
+//     | ReturnType<typeof setTotalUsersCount>
+//     | ReturnType<typeof toggleIsFetching>
+//     | ReturnType<typeof SetUserProfile>
+//     | ReturnType<typeof setAuthUsersData>
+//     | ReturnType<typeof toggleIsFollowingProgress>
 
 
 

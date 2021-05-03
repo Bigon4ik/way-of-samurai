@@ -1,5 +1,6 @@
-import {ActionsType, PostType} from './store';
 import {usersAPI} from '../api/api';
+import {PostType} from '../components/Profile/MyPosts/MyPosts';
+import {ActionsType} from './redux-store';
 
 const ADD_POST = 'ADD-POST'
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
@@ -16,7 +17,7 @@ export const ChangeNewTextAC = (newText: string) => {
         newText: newText,
     } as const
 }
-const SetUserProfile = (profile:any) => {
+export const SetUserProfile = (profile:any) => {
     return {
         type: 'SET_USER_PROFILE',
         profile

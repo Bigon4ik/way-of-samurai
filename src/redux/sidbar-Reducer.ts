@@ -1,6 +1,6 @@
-import {ActionsType, DiologPageType, SidebarType} from './store';
+import {ActionsType} from './redux-store';
 
-
+export type SidebarType = {}
 
 const initialState: SidebarType ={
 

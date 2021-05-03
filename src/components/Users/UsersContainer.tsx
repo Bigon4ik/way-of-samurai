@@ -1,21 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
 import {ReduxStateType} from '../../redux/redux-store';
 import {
-    follow, getUsersThunkCreator,
+    follow,
+    getUsersThunkCreator,
     InitialStateType,
     setCountPage,
-    setTotalUsersCount,
-    setUsers, toggleIsFetching, toggleIsFollowingProgress,
     unfollow,
     UserType
 } from '../../redux/Users-Reducer';
-import axios from 'axios';
 import Users from './Users';
-import preloader from '../../assets/img/200.gif'
 import Preloader from '../common/Preloader/Preloader';
-import { usersAPI } from '../../api/api';
 
 type MapStateToPropsType = {
     usersPage: InitialStateType
