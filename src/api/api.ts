@@ -18,12 +18,20 @@ export const usersAPI = {
     unFollow(userId:number){
         return instace.delete(`follow/${userId}`,)
     },
-    getProfile(userId:number){
-        return instace.get(`profile/` + userId)
-    }
 }
 export const authAPI = {
     me(){
         return instace.get(`auth/me`)
+    }
+}
+export const profileAPI = {
+    getProfile(userId:number){
+        return instace.get(`profile/` + userId)
+    },
+    getStatus(userId:number){
+        return instace.get(`profile/status/` + userId)
+    },
+    updateStatus(status:string){
+        return instace.put(`profile/status/`,{status} )
     }
 }

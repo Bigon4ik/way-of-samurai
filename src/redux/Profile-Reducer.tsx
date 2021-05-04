@@ -1,39 +1,60 @@
-import {usersAPI} from '../api/api';
+import {profileAPI, usersAPI} from '../api/api';
 import {PostType} from '../components/Profile/MyPosts/MyPosts';
 import {ActionsType} from './redux-store';
 
 const ADD_POST = 'ADD-POST'
-const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT'
+const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_STATUS = 'SET_STATUS'
 
 export const AddPostAC = () => {
     return {
-        type: 'ADD-POST',
+        type: ADD_POST,
     } as const
 }
 export const ChangeNewTextAC = (newText: string) => {
     return {
-        type: 'CHANGE-NEW-TEXT',
+        type: CHANGE_NEW_TEXT,
         newText: newText,
     } as const
 }
-export const SetUserProfile = (profile:any) => {
+export const SetUserProfile = (profile: any) => {
     return {
-        type: 'SET_USER_PROFILE',
+        type: SET_USER_PROFILE,
         profile
     } as const
 }
-export const getUserProfile = (userId:number) => (dispatch:any)=> {
-    usersAPI.getProfile(userId).then(response => {
+export const SetStatus = (status: string) => {
+    return {
+        type: SET_STATUS,
+        status
+    } as const
+}
+export const getUserProfile = (userId: number) => (dispatch: any) => {
+    profileAPI.getProfile(userId).then(response => {
         dispatch(SetUserProfile(response.data))
     })
-    }
+}
+export const getStatus = (userId: number) => (dispatch: any) => {
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(SetStatus(response.data))
+    })
+}
+export const updateStatus = (status: string) => (dispatch: any) => {
+    profileAPI.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(SetStatus(status))
+            }
+        })
+}
 
 
 type ProfilePageType = {
     posts: Array<PostType>
     messageForNewPost: string
-    profile:null
+    profile: null
+    status: string
 }
 const initialState: ProfilePageType = {
     messageForNewPost: 'iiiiiit',
@@ -42,7 +63,8 @@ const initialState: ProfilePageType = {
         {id: 2, message: 'Hello my freends', likesCount: 42},
         {id: 3, message: 'Hello my', likesCount: 2}
     ],
-    profile:null
+    profile: null,
+    status: '',
 
 }
 
@@ -70,6 +92,12 @@ const profileReducer = (state = initialState, action: ActionsType) => {
             return {
                 ...state,
                 profile: action.profile
+            }
+        }
+        case SET_STATUS: {
+            return {
+                ...state,
+                status: action.status
             }
         }
         default:

@@ -15,7 +15,7 @@ const ProfileInfo = (props:any) => {
             <div className={s.discriptionBlock}>
                 Full name: {props.profile.fullName}
                 <img src={props.profile.photos.large}/>
-                <ProfileStatus status={'hello mu friends'}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 Search work : {props.profile.lookingForAJobDescription}
 
 
