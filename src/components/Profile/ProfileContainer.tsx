@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {getUserProfile} from '../../redux/Profile-Reducer';
 import {Redirect, withRouter} from 'react-router-dom';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {compose} from 'redux';
 
 export type ProfilePropsType = {
     store?: ReduxStoreType
@@ -14,7 +15,7 @@ export type ProfilePropsType = {
     //  message: string
     //  dispatch: (action: ActionsType) => void
 }
-type ContactProfileType={
+type ContactProfileType = {
     github: string
     vk: string
     facebook: string
@@ -24,11 +25,11 @@ type ContactProfileType={
     youtube: string
     mainLink: string
 }
-type PhotosProfileType={
-    small:string
-    large:string
+type PhotosProfileType = {
+    small: string
+    large: string
 }
-type ProfileContainerType={
+type ProfileContainerType = {
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string
@@ -63,9 +64,11 @@ const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
     }
 }
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default withAuthRedirect(connect(mapStateToProps, {getUserProfile})(WithUrlDataContainerComponent));
-
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {getUserProfile}),
+    withRouter,
+    withAuthRedirect,
+)(ProfileContainer)
 
 
