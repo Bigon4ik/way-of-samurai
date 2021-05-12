@@ -1,5 +1,5 @@
 import React from 'react';
-import {AddPostAC, ChangeNewTextAC} from '../../../redux/Profile-Reducer';
+import {AddPostAC} from '../../../redux/Profile-Reducer';
 import MyPosts from './MyPosts';
 import {ReduxStateType, ReduxStoreType} from '../../../redux/redux-store';
 import {connect} from 'react-redux';
@@ -28,19 +28,19 @@ type MyPostsContainerType = {
 let mapStateToProps = (state: ReduxStateType) => {
     return {
         posts: state.profilePage.posts,
-        messageForNewPost: state.profilePage.messageForNewPost
+        //messageForNewPost: state.profilePage.messageForNewPost
     }
 }
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
-        addPost: () => {
-            dispatch(AddPostAC())
+        addPost: (messageForNewPost:any) => {
+            dispatch(AddPostAC(messageForNewPost))
         },
-        newTextChangeHandler: (text: string) => {
-
-            dispatch(ChangeNewTextAC(text))
-        },
+        // newTextChangeHandler: (text: string) => {
+        //
+        //     dispatch(ChangeNewTextAC(text))
+        // },
     }
 }
 

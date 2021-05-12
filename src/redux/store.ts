@@ -1,4 +1,4 @@
-import {AddPostAC, ChangeNewTextAC, SetUserProfile} from './Profile-Reducer';
+import {AddPostAC, SetUserProfile} from './Profile-Reducer';
 import {AddMessageAC} from './Dialogs-Reducer';
 import {
     followSoc,

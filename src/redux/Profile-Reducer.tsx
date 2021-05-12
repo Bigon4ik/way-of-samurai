@@ -3,21 +3,22 @@ import {PostType} from '../components/Profile/MyPosts/MyPosts';
 import {ActionsType} from './redux-store';
 
 const ADD_POST = 'ADD-POST'
-const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
+// const CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 
-export const AddPostAC = () => {
+export const AddPostAC = (messageForNewPost:any) => {
     return {
         type: ADD_POST,
+        messageForNewPost
     } as const
 }
-export const ChangeNewTextAC = (newText: string) => {
-    return {
-        type: CHANGE_NEW_TEXT,
-        newText: newText,
-    } as const
-}
+// export const ChangeNewTextAC = (newText: string) => {
+//     return {
+//         type: CHANGE_NEW_TEXT,
+//         newText: newText,
+//     } as const
+// }
 export const SetUserProfile = (profile: any) => {
     return {
         type: SET_USER_PROFILE,
@@ -52,12 +53,12 @@ export const updateStatus = (status: string) => (dispatch: any) => {
 
 type ProfilePageType = {
     posts: Array<PostType>
-    messageForNewPost: string
+    //messageForNewPost: string
     profile: null
     status: string
 }
 const initialState: ProfilePageType = {
-    messageForNewPost: 'iiiiiit',
+    //messageForNewPost: 'iiiiiit',
     posts: [
         {id: 1, message: 'Hi,hom are you', likesCount: 12},
         {id: 2, message: 'Hello my freends', likesCount: 42},
@@ -73,21 +74,21 @@ const profileReducer = (state = initialState, action: ActionsType) => {
         case ADD_POST: {
             const newPost: PostType = {
                 id: new Date().getTime(),
-                message: state.messageForNewPost,
+                message: action.messageForNewPost,
                 likesCount: 0
             }
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                messageForNewPost: ''
+                // messageForNewPost: ''
             }
         }
-        case CHANGE_NEW_TEXT: {
-            return {
-                ...state,
-                messageForNewPost: action.newText
-            }
-        }
+        // case CHANGE_NEW_TEXT: {
+        //     return {
+        //         ...state,
+        //         messageForNewPost: action.newText
+        //     }
+        // }
         case SET_USER_PROFILE: {
             return {
                 ...state,
