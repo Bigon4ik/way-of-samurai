@@ -22,7 +22,13 @@ export const usersAPI = {
 export const authAPI = {
     me(){
         return instace.get(`auth/me`)
-    }
+    },
+    login(email:string,password:string,rememberMe:boolean=false){
+        return instace.post(`auth/login`,{email,password,rememberMe})
+    },logout(){
+        return instace.delete(`auth/login`)
+    },
+
 }
 export const profileAPI = {
     getProfile(userId:number){
