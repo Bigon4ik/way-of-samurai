@@ -5,6 +5,8 @@ import Message from './Message/Message';
 import {DiologType, MessageType} from '../../redux/Dialogs-Reducer';
 import {Redirect} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
+import {Textarea} from '../common/FormControls/FormControls';
+import {maxLengthCreator, requiredField} from '../../utils/validator/validators';
 
 type DiologPropsType = {
     dialogs: Array<DiologType>
@@ -53,11 +55,15 @@ const Dialogs = (props: DiologPropsType) => {
         </div>
     )
 }
+const maxLength_100=maxLengthCreator(100)
+
+
 const AddMessageForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={'textarea'} name="newMessageBody" placeholder='Enter your message'/>
+                <Field component={Textarea} name="newMessageBody" placeholder='Enter your message'
+                       validate={[requiredField,maxLength_100]} />
                 {/*<textarea onChange={newTextChangeHandlerMessage}*/}
                 {/*          value={props.messageForNewMessage}> </textarea>*/}
             </div>

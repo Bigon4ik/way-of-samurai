@@ -55,3 +55,23 @@ export default compose<React.ComponentType>(
     withAuthRedirect
 )(Dialogs)
 
+// export default compose<React.ComponentType>(
+//     connect<MSTPType, MDTPType, {}, RootState>(MSTP, {addMessageAc}),
+//     withAuthRedirect)(Dialogs)
+//
+// type MSTPType = {
+//     dialogs: Array<DialogType>
+//     messages: Array<MessageType>
+//
+// }
+//
+// type MDTPType = {
+//     addMessageAc: (text: string) => void
+// }
+//
+// const MSTP = (state: RootState) => {
+//     return {
+//         dialogs: state.dialogsPage.dialogs,
+//         messages: state.dialogsPage.messages
+//     }
+// }

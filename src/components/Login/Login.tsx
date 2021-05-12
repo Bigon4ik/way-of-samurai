@@ -1,5 +1,6 @@
 import React from 'react';
 import  {Field,InjectedFormProps, reduxForm} from 'redux-form';
+import { Input } from '../common/FormControls/FormControls';
 
 
 type FormDataType={
@@ -10,9 +11,9 @@ type FormDataType={
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return(
         <form onSubmit={props.handleSubmit}>
-            <div><Field placeholder={'Login'} name={'login'} component={'input'}/></div>
-            <div><Field placeholder={'Password'} name={'password'} component={'input'}/></div>
-            <div><Field component={'input'} name={'rememberMe'} type={'checkbox'}/>remember me</div>
+            <div><Field placeholder={'Login'} name={'login'} component={Input}/></div>
+            <div><Field placeholder={'Password'} name={'password'} component={Input}/></div>
+            <div><Field component={Input} name={'rememberMe'} type={'checkbox'}/>remember me</div>
             <div>
                 <button>Login</button>
             </div>
