@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import profileReducer, {AddPostAC, ChangeNewTextAC, SetStatus, SetUserProfile} from './Profile-Reducer';
-import dialogsReducer, {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Reducer';
+import dialogsReducer, {AddMessageAC} from './Dialogs-Reducer';
 import sidebarReducer from './sidbar-Reducer';
 import usersReducer, {
     followSoc,
@@ -18,7 +18,7 @@ export type ActionsType =
     ReturnType<typeof AddPostAC>
     | ReturnType<typeof ChangeNewTextAC>
     | ReturnType<typeof AddMessageAC>
-    | ReturnType<typeof ChangeNewTextDialogsAC>
+    // | ReturnType<typeof ChangeNewTextDialogsAC>
     | ReturnType<typeof followSoc>
     | ReturnType<typeof unfollowSoc>
     | ReturnType<typeof setUsers>

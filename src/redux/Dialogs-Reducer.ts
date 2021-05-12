@@ -1,11 +1,11 @@
 import {ActionsType} from './redux-store';
 
 const ADD_MESSAGE = 'ADD-MESSAGE'
-const CHANGE_NEW_TEXT_MESSAGE = 'CHANGE-NEW-TEXT-MESSAGE'
+// const CHANGE_NEW_TEXT_MESSAGE = 'CHANGE-NEW-TEXT-MESSAGE'
 type DiologPageType = {
     dialogs: Array<DiologType>
     message: Array<MessageType>
-    messageForNewMessage: string
+    // messageForNewMessage: string
 
 }
 export type MessageType = {
@@ -15,20 +15,20 @@ export type DiologType = {
     id: number
     name: string
 }
-export const AddMessageAC = () => {
+export const AddMessageAC = (newMessageBody:any) => {
     return {
-        type: 'ADD-MESSAGE'
+        type: 'ADD-MESSAGE',
+        newMessageBody
     } as const
 }
-export const ChangeNewTextDialogsAC = (newTextMessage: string) => {
-    return {
-        type: 'CHANGE-NEW-TEXT-MESSAGE',
-        newTextMessage: newTextMessage,
-    } as const
-}
+// export const ChangeNewTextDialogsAC = (newTextMessage: string) => {
+//     return {
+//         type: 'CHANGE-NEW-TEXT-MESSAGE',
+//         newTextMessage: newTextMessage,
+//     } as const
+// }
 
 const initialState: DiologPageType = {
-    messageForNewMessage: '',
     dialogs: [
         {id: 1, name: 'Pavel'},
         {id: 2, name: 'Dima'},
@@ -40,7 +40,8 @@ const initialState: DiologPageType = {
         {message: 'axaxax'},
         {message: 'you'},
         {message: 'hello'},
-    ]as Array<MessageType>
+    ]as Array<MessageType>,
+    // messageForNewMessage:''
 }
 export type InitialStateType= typeof initialState
 
@@ -49,16 +50,15 @@ const dialogsReducer = (state:InitialStateType = initialState, action: ActionsTy
         case ADD_MESSAGE: {
             return {
                 ...state,
-                messageForNewMessage: '',
-                message: [...state.message, {message: state.messageForNewMessage}],
+                message: [...state.message, {message: action.newMessageBody}],
             }
         }
-        case CHANGE_NEW_TEXT_MESSAGE: {
-            return {
-                ...state,
-                messageForNewMessage: action.newTextMessage}
-
-        }
+        // case CHANGE_NEW_TEXT_MESSAGE: {
+        //     return {
+        //         ...state,
+        //         messageForNewMessage: action.newTextMessage}
+        //
+        // }
         default:
             return state
     }

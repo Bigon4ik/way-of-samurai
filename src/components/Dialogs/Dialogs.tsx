@@ -10,21 +10,21 @@ type DiologPropsType = {
     dialogs: Array<DiologType>
     messages: Array<MessageType>
     messageForNewMessage: string
-    addMessage: () => void
-    newTextChangeHandler: (text: string) => void
+    addMessage: (newMessageBody: any) => void
+    //newTextChangeHandler: (text: string) => void
     // isAuth:boolean
 }
 
 const Dialogs = (props: DiologPropsType) => {
-    let addMessage = () => {
-        // let text = newMessageElement.current?.value
-        // alert(text)
-        props.addMessage()
-    }
-    const newTextChangeHandlerMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        //props.changeNewTextCallback(e.currentTarget.value)
-        props.newTextChangeHandler(e.currentTarget.value)
-    }
+    // let addMessage = () => {
+    //     // let text = newMessageElement.current?.value
+    //     // alert(text)
+    //     props.addMessage()
+    // }
+    // const newTextChangeHandlerMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    //     //props.changeNewTextCallback(e.currentTarget.value)
+    //     props.newTextChangeHandler(e.currentTarget.value)
+    // }
 
 
     let dialogsElements = props.dialogs
@@ -35,9 +35,10 @@ const Dialogs = (props: DiologPropsType) => {
         .map(m => <Message message={m.message} key={m.message}/>)
 
     // if(!props.isAuth) return <Redirect to={"/login"}/>
-let addMessages=(values:any)=>{
-        alert(values.)
-}
+    let addMessage = (values: any) => {
+        // alert(values.newMessageBody)
+        props.addMessage(values.newMessageBody)
+    }
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
@@ -46,7 +47,7 @@ let addMessages=(values:any)=>{
             </div>
             <div className={s.messages}>
                 {messageElements}
-                <AddMessageFormRedux onSubmit={addMessages}/>
+                <AddMessageFormRedux onSubmit={addMessage}/>
             </div>
 
         </div>

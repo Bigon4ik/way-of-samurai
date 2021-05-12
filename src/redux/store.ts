@@ -1,5 +1,5 @@
 import {AddPostAC, ChangeNewTextAC, SetUserProfile} from './Profile-Reducer';
-import {AddMessageAC, ChangeNewTextDialogsAC} from './Dialogs-Reducer';
+import {AddMessageAC} from './Dialogs-Reducer';
 import {
     followSoc,
     setCountPage,

@@ -1,5 +1,5 @@
 import React from 'react';
-import {AddMessageAC, ChangeNewTextDialogsAC} from '../../redux/Dialogs-Reducer';
+import {AddMessageAC} from '../../redux/Dialogs-Reducer';
 import Dialogs from './Dialogs';
 import {ReduxStateType} from '../../redux/redux-store';
 import {connect} from 'react-redux';
@@ -24,29 +24,29 @@ type DialogsContainerType = {
 type MapStateToPropsType = {
     dialogs: Array<DiologType>
     messages: Array<MessageType>
-    messageForNewMessage: string
+    //messageForNewMessage: string
 }
 type MapDispatchToPropsType = {
-    addMessage: () => void
-    newTextChangeHandler: (text: string) => void
+    addMessage: (newMessageBody:any) => void
+   // newTextChangeHandler: (text: string) => void
 }
 type OwnPropsType = MapStateToPropsType & MapDispatchToPropsType
 let mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
     return {
         dialogs: state.dialogsPage.dialogs,
-        messageForNewMessage: state.dialogsPage.messageForNewMessage,
+        //messageForNewMessage: state.dialogsPage.messageForNewMessage,
         messages: state.dialogsPage.message,
     }
 
 }
 let mapDispatchToProps = (dispatch:any):MapDispatchToPropsType => {
     return {
-        addMessage: () => {
-            dispatch(AddMessageAC())
+        addMessage: (newMessageBody:any) => {
+            dispatch(AddMessageAC(newMessageBody))
         },
-        newTextChangeHandler: (text: string) => {
-            dispatch(ChangeNewTextDialogsAC(text))
-        },
+        // newTextChangeHandler: (text: string) => {
+        //     dispatch(ChangeNewTextDialogsAC(text))
+        // },
     }
 }
 
