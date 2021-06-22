@@ -1,5 +1,6 @@
 import {authAPI} from '../api/api';
 import {ActionsType} from './redux-store';
+import {stopSubmit} from 'redux-form';
 
 
 const SET_USERS_DATA = 'SET_USERS_DATA'
@@ -31,7 +32,6 @@ export const getAuthUsersData = () =>
                 let {id, email, login, isAuth} = response.data.data
                 dispatch(setAuthUsersData(id,email,login,true))
             }
-
         })
 }
 export const login = (email:string,password:string,rememberMe:boolean) =>
@@ -39,6 +39,9 @@ export const login = (email:string,password:string,rememberMe:boolean) =>
         authAPI.login(email,password,rememberMe).then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUsersData())
+            }else {
+
+                dispatch(stopSubmit('login',{_error:'Email is wrong'}))
             }
         })
 }
