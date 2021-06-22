@@ -40,8 +40,9 @@ export const login = (email:string,password:string,rememberMe:boolean) =>
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUsersData())
             }else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0]:'Some Error'
 
-                dispatch(stopSubmit('login',{_error:'Email is wrong'}))
+                dispatch(stopSubmit('login',{_error:message}))
             }
         })
 }

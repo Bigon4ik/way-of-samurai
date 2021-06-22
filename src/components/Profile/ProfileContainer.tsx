@@ -40,13 +40,15 @@ type ProfileContainerType = {
 type MapStateToPropsType = {
     profile: ProfileContainerType
     status:string
+    authorizedUserId:number | null
+    authorizedIsAuth:boolean
 }
 
 class ProfileContainer extends React.Component<any, any> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = 2
+            userId = this.props.authorizedUserId
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -68,6 +70,8 @@ const mapStateToProps = (state: ReduxStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         status:state.profilePage.status,
+        authorizedUserId:state.auth.id,
+        authorizedIsAuth:state.auth.isAuth,
     }
 }
 
