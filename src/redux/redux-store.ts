@@ -13,7 +13,7 @@ import usersReducer, {
 import authReducer, {setAuthUsersData} from './auth-Reducer';
 import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
-import {initializedSuccess} from './app-Reducer';
+import appReducer, {initializedSuccess} from './app-Reducer';
 
 export type ActionsType =
     ReturnType<typeof AddPostAC>
@@ -38,6 +38,7 @@ const rootReducer = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    app:appReducer,
     form:formReducer
 })
 
