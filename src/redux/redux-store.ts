@@ -13,6 +13,7 @@ import usersReducer, {
 import authReducer, {setAuthUsersData} from './auth-Reducer';
 import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
+import {initializedSuccess} from './app-Reducer';
 
 export type ActionsType =
     ReturnType<typeof AddPostAC>
@@ -29,6 +30,7 @@ export type ActionsType =
     | ReturnType<typeof setAuthUsersData>
     | ReturnType<typeof toggleIsFollowingProgress>
     | ReturnType<typeof SetStatus>
+    | ReturnType<typeof initializedSuccess>
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,
