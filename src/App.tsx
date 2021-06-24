@@ -16,12 +16,15 @@ import Preloader from './components/common/Preloader/Preloader';
 class App extends Component {
 
     componentDidMount() {
-        this.props.initializeApp();
+        // @ts-ignore
+        this.state.arguments.initializeApp();
 
     }
     render() {
-        if(this.props.initialized){
+        // @ts-ignore
+        if(this.state.arguments.initialized){
             return <Preloader/>
+
         }
 
         return (
